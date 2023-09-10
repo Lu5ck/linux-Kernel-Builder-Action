@@ -53,7 +53,7 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
-          brew install make nproc
+          brew install make coreutils
           echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
 
       - name: "Setup Anykernel3"
