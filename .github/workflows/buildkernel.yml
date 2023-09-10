@@ -57,4 +57,4 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
-          brew install curl zip tar gzip make git
+          brew install curl make git
