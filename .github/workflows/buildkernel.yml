@@ -57,4 +57,9 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
-          brew install curl make git
+          brew install make
+          
+      - name: "Setup Path"
+        run: |
+          echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
+          echo $PATH
