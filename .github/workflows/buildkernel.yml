@@ -60,7 +60,6 @@ jobs:
         env:
           params: "${{ toJSON(matrix.repos.AnyKernel3) }}"
         run: |
-          echo nproc
           ANYKERNEL_REPO=$(echo $params | jq -r ".repo")
           ANYKERNEL_BRANCH=$(echo $params | jq -r ".branch")
           git clone --recursive --depth=1 -j $(nproc) --branch $ANYKERNEL_BRANCH $ANYKERNEL_REPO AnyKernel3
