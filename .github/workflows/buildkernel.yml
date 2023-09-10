@@ -37,6 +37,8 @@ jobs:
       fail-fast: false
       matrix:
         repos: ${{ fromJSON(needs.Set-repos.outputs.repos) }}
+    outputs:
+      nproc: ${{ steps.generate-nproc.outputs.nproc }}
     env:
       WORKSPACE: ${{ github.workspace }}
       builddate: "${{ needs.Set-repos.outputs.builddate }}"
@@ -49,7 +51,6 @@ jobs:
       ccache: ${{ matrix.repos.ccache }}
       useAnykernel: ${{ matrix.repos.AnyKernel3.use }}
       release: ${{ matrix.repos.AnyKernel3.release }}
-      nproc: ${{ steps.generate-nproc.outputs.nproc }}
 
     steps:
       - name: "Install prerequisites"
@@ -65,7 +66,6 @@ jobs:
           ANYKERNEL_REPO=$(echo $params | jq -r ".repo")
           ANYKERNEL_BRANCH=$(echo $params | jq -r ".branch")
           git clone --recursive --depth=1 -j $nproc --branch $ANYKERNEL_BRANCH $ANYKERNEL_REPO AnyKernel3
-
           echo "Setup Anykernel3 => ($ANYKERNEL_REPO)"
 
       - name: "Clone kernel source => (${{ env.KERNEL_REPO }})"
