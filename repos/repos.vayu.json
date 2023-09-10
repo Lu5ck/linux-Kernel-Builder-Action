@@ -1,0 +1,62 @@
+[
+  {
+    "kernelSource": {
+      "name": "CrDroid-KernelSU-Vayu",
+      "repo": "https://github.com/Lu5ck/android_kernelsu_xiaomi_sm8150",
+      "branch": "13.0",
+      "device": "vayu",
+      "defconfig": "vayu_user_defconfig"
+    },
+    "withKernelSU": true,
+    "toolchains": [
+      {
+        "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/+archive/refs/heads/android12L-release.tar.gz",
+        "name": "host",
+        "binPath": ["bin"]
+      },
+      {
+        "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android12L-release.tar.gz",
+        "name": "arm",
+        "binPath": ["bin"]
+      },
+      {
+        "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/+archive/refs/heads/android12L-release.tar.gz",
+        "name": "gcc",
+        "binPath": ["bin"]
+      },
+      {
+        "url": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r498229.tar.gz",
+        "name": "clang",
+        "binPath": ["bin"]
+      }
+    ],
+    "ccache": false,
+    "params": {
+      "ARCH": "arm64",
+      "SUBARCH": "arm64",
+      "CC": "clang",
+      "LD": "ld.lld",
+      "NM": "llvm-nm",
+      "STRIP": "llvm-strip",
+      "OBJCOPY": "llvm-objcopy",
+      "OBJDUMP": "llvm-objdump",
+      "READELF": "llvm-readelf",
+      "LLVM_IAS": "1",
+      "HOSTCC": "clang",
+      "HOSTCXX": "clang++",
+      "HOSTLD": "ld.lld",
+      "HOSTAR": "llvm-ar",
+      "externalCommand": {
+        "CLANG_TRIPLE": "aarch64-linux-gnu-",
+        "CROSS_COMPILE": "aarch64-linux-android-",
+        "CROSS_COMPILE_ARM32": "arm-linux-androideabi-"
+      }
+    },
+    "AnyKernel3": {
+      "use": true,
+      "release": true,
+      "repo": "https://github.com/Lu5ck/AnyKernel3-CrDorid-PocoX3Pro",
+      "branch": "master"
+    }
+  }
+]
