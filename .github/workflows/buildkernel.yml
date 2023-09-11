@@ -82,7 +82,7 @@ jobs:
           jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions" | while IFS='|' read key value; do
             args="$args $key=$value"
             if [ $key = "ARCH" ]; then
-              ARCH = $value
+              echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
             fi
           done
           
@@ -91,5 +91,4 @@ jobs:
           fi
         
           echo "$args"
-          echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
           echo "args=$args" >> $GITHUB_OUTPUT
