@@ -79,7 +79,7 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           args="-j${{ env.THREAD }}"
-          echo "$makeOptions" | jq -c -r '.[]' | while read -r key; do
+          echo "$makeOptions" | while read -r key; do
             read -r value
             echo $key
             echo $value
