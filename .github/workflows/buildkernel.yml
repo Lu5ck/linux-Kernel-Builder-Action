@@ -53,8 +53,10 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
-          brew install make coreutils sed python3
+          brew uninstall gnu-sed
+          brew install make coreutils gnu-sed python3
           echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
+          sudo echo $PATH | grep -q '/usr/local/bin'; [ $? -ne 0 ] && export PATH=/usr/local/bin:$PATH
 
       - name: "Setup Anykernel3"
         env:
