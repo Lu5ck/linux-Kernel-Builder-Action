@@ -81,7 +81,7 @@ jobs:
           args="-j${{ env.THREAD }}"
           jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions" | while IFS='|' read key value; do
             args="$args $key=$value"
-            if [ $key = "ARCH" ]; then\
+            if [ $key = "ARCH" ]; then
               ARCH = $value
             fi
           done
