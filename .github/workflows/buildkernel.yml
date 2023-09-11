@@ -82,12 +82,8 @@ jobs:
           args="-j${{ env.THREAD }}"
           while read -r $makeOptions; do
             echo $makeOptions | cut -d= -f1
-            echo "$makeOptions" | cut -d= -f2
+            echo $makeOptions | cut -d= -f2
           done
-          
-          ARCH=$(echo $params | jq -r ".ARCH")
-          CC=$(echo $params | jq -r ".CC")
-
           
           if [ -n "${{ env.OUT_DIR }}" ]; then
             mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
