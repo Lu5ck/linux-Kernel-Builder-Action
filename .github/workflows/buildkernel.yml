@@ -74,7 +74,7 @@ jobs:
         id: generate-args
         env:
           makeOptions: "${{ toJSON(matrix.repos.makeOptions) }}"
-          makeExport: "${{ toJSON(matrix.repos.makeExport) }}"
+          makeExports: "${{ toJSON(matrix.repos.makeExports) }}"
           THREAD: $(nproc --all)
         run: |
           echo "PATH Variable: $PATH"
@@ -82,7 +82,7 @@ jobs:
           args="-j${{ env.THREAD }}"
           while read -r $makeOptions; do
             echo $makeOptions | cut -d= -f1
-            echo "$externalCommand" | cut -d= -f2
+            echo "$makeOptions" | cut -d= -f2
           done
           
           ARCH=$(echo $params | jq -r ".ARCH")
