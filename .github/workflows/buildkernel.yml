@@ -79,10 +79,10 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           args="-j${{ env.THREAD }}"
-          while read -r i; do
+          for $(jq '.[]' <<< "$makeOptions");
             echo $i | cut -d= -f1
             echo $i | cut -d= -f2
-          done << (jq -c '.[]' $makeOptions)
+          done
           
           if [ -n "${{ env.OUT_DIR }}" ]; then
             mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
