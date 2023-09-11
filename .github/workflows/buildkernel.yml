@@ -78,12 +78,11 @@ jobs:
           THREAD: $(nproc --all)
         run: |
           echo "PATH Variable: $PATH"
-          parms = $makeOptions | jq '.[]'
           args="-j${{ env.THREAD }}"
-          while read -r parms; do
-            echo $parms | cut -d= -f1
-            echo $parms | cut -d= -f2
-          done
+          while read -r i; do
+            echo $i | cut -d= -f1
+            echo $i | cut -d= -f2
+          done << (jq -c '.[]' $makeOptions)
           
           if [ -n "${{ env.OUT_DIR }}" ]; then
             mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
