@@ -70,7 +70,7 @@ jobs:
           git clone --recursive --depth=1 -j $(nproc) --branch $KERNEL_BRANCH $KERNEL_REPO $KERNEL_NAME
           echo "Clone kernel source => ($KERNEL_REPO)"
 
-      - name: "Set args"
+      - name: "Parsing make options and exports"
         id: generate-args
         env:
           makeOptions: "${{ toJSON(matrix.repos.makeOptions) }}"
@@ -78,17 +78,22 @@ jobs:
           THREAD: $(nproc --all)
         run: |
           echo "PATH Variable: $PATH"
-          args="-j${{ env.THREAD }}"
+          makeArgs="-j${{ env.THREAD }}"
           while IFS='|' read key value; do
-            export args="$args ${key}=${value}"
+            makeArgs="$makeArgs ${key}=${value}"
             if [ $key = "ARCH" ]; then
               echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
             fi
           done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions")
-          echo "==> $args"
+
+          while IFS='|' read key value; do
+            makeExport="$makeExport ${key}=${value}"
+          done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeExports")
+
           if [ -n "${{ env.OUT_DIR }}" ]; then
-            mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
+            mkdir -p ${{ env.OUT_DIR }} && makeArgs="$makeArgs O=${{ env.OUT_DIR }}"
           fi
         
-          echo "$args"
-          echo "args=$args" >> $GITHUB_OUTPUT
+          echo "$makeArgs"
+          echo "makeArgs=$makeArgs" >> $GITHUB_OUTPUT
+          echo "makeExport=$makeExport" >> $GITHUB_OUTPUT
