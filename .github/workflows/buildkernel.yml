@@ -80,20 +80,14 @@ jobs:
           echo "PATH Variable: $PATH"
           args="-j${{ env.THREAD }}"
           jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions" | while IFS='|' read key value; do
-            echo "$key has value $value"
+            args="$args $key=$value"
+            if [ $key = "ARCH" ]; then\
+              ARCH = $value
+            fi
           done
           
           if [ -n "${{ env.OUT_DIR }}" ]; then
             mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
-          fi
-          if [ -n "$ARCH" ]; then
-            args="$args ARCH=$ARCH"
-          fi
-          if [ -n "$CC" ]; then
-
-            if [[ "$CC" == *"/"* ]]; then
-              CC=${{ env.WORKSPACE }}/$CC
-            fi
           fi
         
           echo "$args"
