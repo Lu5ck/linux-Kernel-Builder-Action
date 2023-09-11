@@ -14,16 +14,16 @@ jobs:
       repos: ${{ steps.generate-matrix.outputs.repos }}
       builddate: ${{ steps.generate-builddate.outputs.builddate }}
     steps:
-      - name: "😄 Checkout"
+      - name: "Checkout"
         uses: actions/checkout@v3
 
-      - name: "😆 Generate Matrix"
+      - name: "Generate Matrix"
         id: generate-matrix
         run: |
           echo "repos<<EOF" >> $GITHUB_OUTPUT
           jq -s '[.[][]]' repos/repos*.json >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-      - name: "⏰ Set builddate"
+      - name: "Set builddate"
         id: generate-builddate
         run: echo "builddate=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
 
@@ -71,12 +71,12 @@ jobs:
           git clone --recursive --depth=1 -j $(nproc) --branch $KERNEL_BRANCH $KERNEL_REPO $KERNEL_NAME
           echo "Clone kernel source => ($KERNEL_REPO)"
 
-      - name: "💫 Get toolchains"
+      - name: "Get toolchains"
         env:
           toolchains: "${{ toJSON(matrix.repos.toolchains) }}"
         run: |
           toolchains_num="$(echo $toolchains | jq 'length')"
-          echo "🤔 There is $toolchains_num defined toolchains."
+          echo "There is $toolchains_num defined toolchains."
           for ((i=0;i<toolchains_num;i++)); do
             toolchain_name=$(echo $toolchains | jq -r ".[$i].name")
             # Github
@@ -88,7 +88,7 @@ jobs:
             echo "Downloading ${toolchain_url}"
             if [ -z "${toolchain_url:-}" ] || [ "$toolchain_url" = "null" ];  then
               git clone --recursive --depth=1 -j $(nproc) --branch $toolchain_branch $toolchain_repo $toolchain_name
-              echo "🤔 Clone $toolchain_name => ($toolchain_repo)"
+              echo "Clone $toolchain_name => ($toolchain_repo)"
             else
               wget -q "$toolchain_url"
               filename="${toolchain_url##*/}"
@@ -119,13 +119,13 @@ jobs:
             done
           done
 
-      - name: "😎 Set args"
+      - name: "Set args"
         id: generate-args
         env:
           params: "${{ toJSON(matrix.repos.params) }}"
           THREAD: $(nproc --all)
         run: |
-          echo "🤔 PATH Variable: $PATH"
+          echo "PATH Variable: $PATH"
 
           ARCH=$(echo $params | jq -r ".ARCH")
           CC=$(echo $params | jq -r ".CC")
@@ -158,11 +158,11 @@ jobs:
             args="$args $key=$value"
           done < <(jq -r '.externalCommand | to_entries[] | "\(.key)=\(.value)"' <<< "$params")
         
-          echo "🤔 $args"
+          echo "$args"
           echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
           echo "args=$args" >> $GITHUB_OUTPUT
 
-      - name: "😋 Update KernelSU"
+      - name: "Update KernelSU"
         working-directory: ${{ env.KERNEL_NAME }}
         env:
           arch: ${{ steps.generate-args.outputs.ARCH }}
@@ -183,7 +183,7 @@ jobs:
 
           cat arch/${{ env.arch }}/configs/${{ env.DEFCONFIG_NAME }}
 
-      - name: "👍 Make defconfig"
+      - name: "Make defconfig"
         working-directory: ${{ env.KERNEL_NAME }}
         env:
           args: ${{ steps.generate-args.outputs.args }}
@@ -191,3 +191,13 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
+
+      - name: "Build kernel"
+        working-directory: ${{ env.KERNEL_NAME }}
+        env:
+          args: ${{ steps.generate-args.outputs.args }}
+        run: |
+          echo "PATH Variable: $PATH"
+          echo "Options: ${{ env.args }}"
+          make ${{ env.args }} prepare
+          make ${{ env.args }}
