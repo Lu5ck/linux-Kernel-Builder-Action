@@ -79,13 +79,12 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           args="-j${{ env.THREAD }}"
-          jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions" | while IFS='|' read key value; do
+          while IFS='|' read key value; do
             export args="$args ${key}=${value}"
             if [ $key = "ARCH" ]; then
               echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
             fi
-          done
-          env | grep args
+          done < < (jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions")
           echo "==> $args"
           if [ -n "${{ env.OUT_DIR }}" ]; then
             mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
