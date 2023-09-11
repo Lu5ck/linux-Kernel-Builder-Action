@@ -80,9 +80,8 @@ jobs:
           echo "PATH Variable: $PATH"
           args="-j${{ env.THREAD }}"
           jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions" | while IFS='|' read key value; do
-            $args="$args ${key}=${value}"
-            echo $key
-            echo $value
+            args="$args ${key}=${value}"
+            echo $args
             if [ $key = "ARCH" ]; then
               echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
             fi
