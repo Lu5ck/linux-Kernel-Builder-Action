@@ -20,7 +20,7 @@
         "binPath": ["bin"]
       },
       {
-        "url": "https://android.googlesource.com/platform/prebuilts/clang/host/darwin-x86/+archive/refs/heads/main.tar.gz",
+        "url": "https://android.googlesource.com/platform/prebuilts/clang/host/darwin-x86/+archive/refs/heads/main/clang-r498229b.tar.gz",
         "name": "clang",
         "binPath": ["bin"]
       }
