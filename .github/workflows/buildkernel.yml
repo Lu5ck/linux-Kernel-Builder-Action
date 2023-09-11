@@ -85,7 +85,7 @@ jobs:
               echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
             fi
           done
-          
+          echo "==> $args"
           if [ -n "${{ env.OUT_DIR }}" ]; then
             mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
           fi
