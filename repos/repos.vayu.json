@@ -40,7 +40,7 @@
       "HOSTCXX": "clang++",
       "HOSTLD": "ld.lld",
       "HOSTAR": "llvm-ar"
-    }
+    },
     "makeExports": {
       "CLANG_TRIPLE": "aarch64-linux-gnu-",
       "CROSS_COMPILE": "aarch64-linux-android-",
