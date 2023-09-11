@@ -80,7 +80,7 @@ jobs:
           echo "PATH Variable: $PATH"
 
           args="-j${{ env.THREAD }}"
-          while read -r makeOptions; do
+          while read -r $makeOptions; do
             echo $makeOptions | cut -d= -f1
             echo "$externalCommand" | cut -d= -f2
           done
