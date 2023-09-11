@@ -78,7 +78,7 @@ jobs:
           THREAD: $(nproc --all)
         run: |
           echo "PATH Variable: $PATH"
-
+          echo $makeOptions
           args="-j${{ env.THREAD }}"
           while read -r $makeOptions; do
             echo $makeOptions | cut -d= -f1
