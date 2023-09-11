@@ -84,7 +84,7 @@ jobs:
             if [ $key = "ARCH" ]; then
               echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
             fi
-          done < < (jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions")
+          done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions")
           echo "==> $args"
           if [ -n "${{ env.OUT_DIR }}" ]; then
             mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
