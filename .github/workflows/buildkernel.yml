@@ -79,7 +79,7 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           args="-j${{ env.THREAD }}"
-          for $(jq '.[]' <<< "$makeOptions");
+          for i in $(jq '.[]' <<< "$makeOptions");
             echo $i | cut -d= -f1
             echo $i | cut -d= -f2
           done
