@@ -52,13 +52,12 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
-          brew install make coreutils gnu-sed
+          brew install coreutils gnu-sed
           echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
           sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
-          sudo xcode-select --switch /Applications/Xcode_14.2.app/Contents/Developer/
           
       - name: "Setup Anykernel3"
         env:
