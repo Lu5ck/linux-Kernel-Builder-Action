@@ -56,8 +56,6 @@ jobs:
           echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
 
-          xcode-select --install
-
       - name: "Setup Anykernel3"
         env:
           params: "${{ toJSON(matrix.repos.AnyKernel3) }}"
@@ -152,6 +150,7 @@ jobs:
           arch: ${{ steps.generate-args.outputs.ARCH }}
         if: ${{ env.withKernelSU == 'true' }}
         run: |
+          export -p
           if [ -d "./KernelSU" ]; then
             rm -rf "./KernelSU"
           fi
