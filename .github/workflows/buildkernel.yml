@@ -57,6 +57,7 @@ jobs:
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
+          softwareupdate --list
           softwareupdate --all --install --force
 
       - name: "Setup Anykernel3"
