@@ -57,9 +57,10 @@ jobs:
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
-          sudo softwareupdate -i 'Command Line Tools for Xcode-14.2'
+          sudo softwareupdate -install -all -ignore macOS
+          echo "==>"
           sudo softwareupdate --list
-
+          
       - name: "Setup Anykernel3"
         env:
           params: "${{ toJSON(matrix.repos.AnyKernel3) }}"
