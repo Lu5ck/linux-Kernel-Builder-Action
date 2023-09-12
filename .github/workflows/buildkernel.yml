@@ -56,6 +56,8 @@ jobs:
           echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
 
+          xcode-select --install
+
       - name: "Setup Anykernel3"
         env:
           params: "${{ toJSON(matrix.repos.AnyKernel3) }}"
@@ -135,7 +137,7 @@ jobs:
           done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions")
 
           while IFS='|' read key value; do
-            echo "${key}={$value}" >> "$GITHUB_ENV"
+            echo "${key}=${value}" >> "$GITHUB_ENV"
           done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeExports")
 
           if [ -n "${{ env.OUT_DIR }}" ]; then
