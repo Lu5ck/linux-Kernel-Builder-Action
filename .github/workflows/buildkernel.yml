@@ -58,7 +58,6 @@ jobs:
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
           softwareupdate --list
-          softwareupdate --all --install --force
 
       - name: "Setup Anykernel3"
         env:
