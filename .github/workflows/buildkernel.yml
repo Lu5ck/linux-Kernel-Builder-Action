@@ -57,7 +57,7 @@ jobs:
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
-          sudo softwareupdate --install --all --force --ignore macOS
+          sudo softwareupdate --install "Command Line Tools for Xcode-14.2"
           echo "==>"
           sudo softwareupdate --list
           
