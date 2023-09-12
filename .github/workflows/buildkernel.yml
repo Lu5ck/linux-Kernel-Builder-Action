@@ -58,8 +58,7 @@ jobs:
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
           sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
-          sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-          find / -name types.h
+          sudo installer -pkg /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -target /
           
       - name: "Setup Anykernel3"
         env:
