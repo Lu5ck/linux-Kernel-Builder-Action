@@ -55,8 +55,9 @@ jobs:
           brew install make coreutils python3 gnu-sed
           echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
-
-          softwareupdate --install -a
+          sudo rm -rf /Library/Developer/CommandLineTools
+          sudo xcode-select --install
+          softwareupdate --all --install --force
 
       - name: "Setup Anykernel3"
         env:
