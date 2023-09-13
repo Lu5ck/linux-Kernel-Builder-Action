@@ -177,7 +177,7 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           echo "Make Options => ${{ env.makeArgs }}"
-          make ${{ env.makeArgs }} KCPPFLAGS="--sysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" KCFLAGS="--sysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" CXXFLAGS="--sysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" ${{ env.DEFCONFIG_NAME }}
+          make ${{ env.makeArgs }} KCPPFLAGS="--isysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" KCFLAGS="--isysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" CXXFLAGS="--isysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" ${{ env.DEFCONFIG_NAME }}
 
       - name: "Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
