@@ -39,8 +39,7 @@
       "HOSTCC": "clang",
       "HOSTCXX": "clang++",
       "HOSTLD": "ld.lld",
-      "HOSTAR": "llvm-ar",
-      "CFLAGS": "--sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk"
+      "HOSTAR": "llvm-ar"
     },
     "makeExports": {
       "CLANG_TRIPLE": "aarch64-linux-gnu-",
