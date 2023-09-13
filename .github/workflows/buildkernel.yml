@@ -177,7 +177,7 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           echo "Make Options => ${{ env.makeArgs }}"
-          make ${{ env.makeArgs }} ${{ env.DEFCONFIG_NAME }}
+          make ${{ env.makeArgs }} CFLAGS="-I/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include" LDFLAGS="-L/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk/usr/include" ${{ env.DEFCONFIG_NAME }}
 
       - name: "Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
