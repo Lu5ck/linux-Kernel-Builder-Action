@@ -28,7 +28,7 @@
     "makeOptions": {
       "ARCH": "arm64",
       "SUBARCH": "arm64",
-      "CC": "clang",
+      "CC": "clang++",
       "LD": "ld.lld",
       "NM": "llvm-nm",
       "STRIP": "llvm-strip",
