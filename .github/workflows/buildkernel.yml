@@ -176,6 +176,7 @@ jobs:
           arch: ${{ steps.generate-args.outputs.ARCH }}
         run: |
           echo "PATH Variable: $PATH"
+          make showcommands
           make ${{ env.makeArgs }} ${{ env.DEFCONFIG_NAME }}
 
       - name: "Build kernel"
