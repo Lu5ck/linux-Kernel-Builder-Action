@@ -177,7 +177,7 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           echo "Make Options => ${{ env.makeArgs }}"
-          make ${{ env.makeArgs }} KCPPFLAGS="--sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk" KCFLAGS="--sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk" ${{ env.DEFCONFIG_NAME }}
+          make ${{ env.makeArgs }} KCPPFLAGS="--sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk" KCFLAGS="--sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk" CXXFLAGS="--sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk" ${{ env.DEFCONFIG_NAME }}
 
       - name: "Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
