@@ -66,7 +66,7 @@ jobs:
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
 
           # Dirty Fixing
-          curl -Ss https://gist.githubusercontent.com/mlafeldt/3885346/raw/elf.h --output-dir /usr/local/include
+          curl https://gist.githubusercontent.com/mlafeldt/3885346/raw/elf.h | tee /usr/local/include/elf.h
       - name: "Setup Anykernel3"
         env:
           params: "${{ toJSON(matrix.repos.AnyKernel3) }}"
