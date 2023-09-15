@@ -158,7 +158,6 @@ jobs:
           arch: ${{ steps.generate-args.outputs.ARCH }}
         if: ${{ env.withKernelSU == 'true' }}
         run: |
-          export -p
           if [ -d "./KernelSU" ]; then
             rm -rf "./KernelSU"
           fi
@@ -189,7 +188,6 @@ jobs:
         env:
           makeArgs: ${{ steps.generate-args.outputs.makeArgs }}
         run: |
-          export -p
           echo "PATH Variable: $PATH"
           echo "Options: ${{ env.makeArgs }}"
           make ${{ env.makeArgs }} prepare
