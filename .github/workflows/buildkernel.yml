@@ -60,8 +60,12 @@ jobs:
           sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
 
           # Dirty linking
-          sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/* /usr/local/include
-          sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/* /usr/local/lib
+          for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include; do
+            sudo ln -sh /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/$i /usr/local/include
+          done
+          for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib; do
+            sudo ln -sh /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/$i /usr/local/lib
+          done
           
       - name: "Setup Anykernel3"
         env:
