@@ -58,6 +58,10 @@ jobs:
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
           sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
+
+          # Dirty linking
+          ln -s /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/* /usr/local/include
+          ln -s /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/* /usr/local/lib
           
       - name: "Setup Anykernel3"
         env:
@@ -177,7 +181,7 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           echo "Make Options => ${{ env.makeArgs }}"
-          make ${{ env.makeArgs }} KCPPFLAGS="--isysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" KCFLAGS="--isysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" CXXFLAGS="--isysroot=/Users/runner/Library/Android/sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/darwin-x86_64/sysroot" ${{ env.DEFCONFIG_NAME }}
+          make ${{ env.makeArgs }} ${{ env.DEFCONFIG_NAME }}
 
       - name: "Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
