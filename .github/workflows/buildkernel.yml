@@ -52,9 +52,11 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
+          ls /usr/local/include/c++
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
           sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
+          ls /usr/local/include/c++
 
           # Dirty linking
           sudo ln -sfn /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/* /usr/local/include
