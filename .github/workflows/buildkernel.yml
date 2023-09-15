@@ -52,21 +52,18 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
-          ls /usr/local/include/c++
+          brew install coreutils gnu-sed make
+          echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
+          echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
+          
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
           sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
-          ls /usr/local/include/c++
 
           # Dirty linking
           sudo rm -rf /usr/local/include/c++
           sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/* /usr/local/include
           sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/* /usr/local/lib
-
-          brew install coreutils gnu-sed make
-          echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
-          echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
-          ls /usr/local/include/c++
           
       - name: "Setup Anykernel3"
         env:
