@@ -60,12 +60,12 @@ jobs:
           sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
 
           # Dirty linking
-          for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include; do
+          for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/*; do
             echo $i
             sudo ln -sh $i /usr/local/include
           done
           echo "================="
-          for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib; do
+          for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/*; do
             echo $i
             sudo ln -sh $i /usr/local/lib
           done
