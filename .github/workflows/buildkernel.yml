@@ -61,12 +61,12 @@ jobs:
           sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/* /usr/local/include
           sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/* /usr/local/lib
 
-          brew install coreutils gnu-sed make libelf
+          brew install coreutils gnu-sed make libelf openssl
           echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
 
           # Dirty Fixing
-          curl https://gist.githubusercontent.com/mlafeldt/3885346/raw/elf.h | tee /usr/local/include/elf.h
+          curl -Ss https://gist.githubusercontent.com/mlafeldt/3885346/raw/elf.h --output-dir /usr/local/include
       - name: "Setup Anykernel3"
         env:
           params: "${{ toJSON(matrix.repos.AnyKernel3) }}"
