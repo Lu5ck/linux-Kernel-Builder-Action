@@ -52,8 +52,8 @@ jobs:
     steps:
       - name: "Install prerequisites"
         run: |
-          brew install coreutils gnu-sed
-          # echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
+          brew install coreutils gnu-sed make
+          echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
           sudo rm -rf /Library/Developer/CommandLineTools
           sudo xcode-select --install
