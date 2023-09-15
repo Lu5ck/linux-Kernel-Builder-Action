@@ -62,12 +62,15 @@ jobs:
           # Dirty linking
           for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/*; do
             echo $i
-            sudo ln -sh $i /usr/local/include
+            if [[ ! sudo ln -sf $i /usr/local/include ]]; then
+            
+            fi
           done
-          echo "================="
           for i in /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/*; do
             echo $i
-            sudo ln -sh $i /usr/local/lib
+            if [[ ! sudo ln -sf $i /usr/local/lib ]]; then
+
+            fi
           done
           
       - name: "Setup Anykernel3"
