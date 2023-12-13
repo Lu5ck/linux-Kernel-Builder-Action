@@ -33,7 +33,7 @@ jobs:
     needs:
       - Set-repos
     strategy:
-      max-parallel: 4
+      max-parallel: 2
       fail-fast: false
       matrix:
         repos: ${{ fromJSON(needs.Set-repos.outputs.repos) }}
