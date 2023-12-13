@@ -50,23 +50,19 @@ jobs:
       release: ${{ matrix.repos.AnyKernel3.release }}
 
     steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          swap-size-mb: 8192
+          remove-dotnet: true
+          remove-android: true
+          remove-haskell: true
+          remove-codeql: true
+          remove-docker-images: true
       - name: "Install prerequisites"
         run: |
-          sudo rm -rf /Library/Developer/CommandLineTools
-          sudo xcode-select --install
-          sudo softwareupdate --install "Command Line Tools for Xcode-14.2" --force
+          sudo apt update && sudo apt -y upgrade
 
-          # Dirty linking
-          sudo rm -rf /usr/local/include/c++
-          sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/* /usr/local/include
-          sudo ln -sf /Applications/Xcode_14.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/* /usr/local/lib
-
-          brew install coreutils gnu-sed make libelf openssl
-          echo "/usr/local/opt/make/libexec/gnubin" >> $GITHUB_PATH
-          echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
-
-          # Dirty Fixing
-          curl https://gist.githubusercontent.com/mlafeldt/3885346/raw/elf.h | tee /usr/local/include/elf.h
       - name: "Setup Anykernel3"
         env:
           params: "${{ toJSON(matrix.repos.AnyKernel3) }}"
