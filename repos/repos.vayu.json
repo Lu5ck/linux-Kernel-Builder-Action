@@ -10,17 +10,17 @@
     "withKernelSU": true,
     "toolchains": [
       {
-        "url": "https://android.googlesource.com/platform/prebuilts/gcc/darwin-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android12L-release.tar.gz",
+        "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android12L-release.tar.gz",
         "name": "arm",
         "binPath": ["bin"]
       },
       {
-        "url": "https://android.googlesource.com/platform/prebuilts/gcc/darwin-x86/aarch64/aarch64-linux-android-4.9/+archive/refs/heads/android12L-release.tar.gz",
+        "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/+archive/refs/heads/android12L-release.tar.gz",
         "name": "gcc",
         "binPath": ["bin"]
       },
       {
-        "url": "https://android.googlesource.com/platform/prebuilts/clang/host/darwin-x86/+archive/refs/heads/main/clang-r498229b.tar.gz",
+        "url": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r498229b.tar.gz",
         "name": "clang",
         "binPath": ["bin"]
       }
