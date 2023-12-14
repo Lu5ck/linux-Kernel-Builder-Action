@@ -62,7 +62,7 @@ jobs:
       - name: "Install prerequisites"
         run: |
           sudo apt update && sudo apt -y upgrade
-          sudo apt install -y make
+          sudo apt install -y make python2 python3
 
       - name: "Setup Anykernel3"
         env:
