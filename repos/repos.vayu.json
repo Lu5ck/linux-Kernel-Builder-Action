@@ -26,8 +26,6 @@
       }
     ],
     "makeOptions": {
-      "ARCH": "arm64",
-      "SUBARCH": "arm64",
       "CC": "clang",
       "LD": "ld.lld",
       "NM": "llvm-nm",
