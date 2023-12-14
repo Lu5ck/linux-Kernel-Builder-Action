@@ -10,6 +10,11 @@
     "withKernelSU": true,
     "toolchains": [
       {
+        "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/+archive/refs/heads/android12L-release.tar.gz",
+        "name": "host",
+        "binPath": ["bin"]
+      },
+      {
         "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/heads/android12L-release.tar.gz",
         "name": "arm",
         "binPath": ["bin"]
