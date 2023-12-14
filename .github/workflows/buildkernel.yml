@@ -147,7 +147,7 @@ jobs:
           done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeExports")
 
           if [ -n "${{ env.OUT_DIR }}" ]; then
-            mkdir -p ${{ env.OUT_DIR }} && makeArgs="$makeArgs O=${{ env.OUT_DIR }}"
+            mkdir -p ${{ env.OUT_DIR }} && makeArgs="O=${{ env.OUT_DIR }} $makeArgs"
           fi
         
           echo "makeArgs=$makeArgs" >> $GITHUB_OUTPUT
