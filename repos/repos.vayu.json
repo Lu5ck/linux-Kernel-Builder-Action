@@ -34,7 +34,7 @@
       "ARCH": "arm64",
       "SUBARCH": "arm64",
       "HOSTCC": "clang",
-      "HOSTCXX": "clang++",
+      "HOSTCXX": "clang++"
     },
     "makeExports": {
       "CLANG_TRIPLE": "aarch64-linux-gnu-",
