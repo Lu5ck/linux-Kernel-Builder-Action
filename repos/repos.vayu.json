@@ -31,8 +31,8 @@
       }
     ],
     "makeOptions": {
-      "ARCH": arm64,
-      "SUBARCH": arm64,
+      "ARCH": "arm64",
+      "SUBARCH": "arm64",
       "CC": "clang",
       "LD": "ld.lld",
       "NM": "llvm-nm",
@@ -50,8 +50,8 @@
       "CLANG_TRIPLE": "aarch64-linux-gnu-",
       "CROSS_COMPILE": "aarch64-linux-android-",
       "CROSS_COMPILE_ARM32": "arm-linux-androideabi-",
-      "ARCH": arm64,
-      "SUBARCH": arm64
+      "ARCH": "arm64",
+      "SUBARCH": "arm64"
     },
     "AnyKernel3": {
       "use": true,
